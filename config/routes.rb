@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'vagabond/home'
 
   root 'vagabond#home'
 

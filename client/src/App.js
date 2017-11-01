@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import CityList from './components/CityList'
+import axios from 'axios'
 
 const Wrapper = styled.div`
   display: flex;
@@ -16,13 +18,35 @@ const Wrapper = styled.div`
 `;
 
 class App extends Component {
+
+  state = {
+    cities: []
+  }
+
+  async componentWillMount () {
+    try {
+      const response = await axios.get('/api/cities')
+      this.setState({cities: response.data})
+
+    } catch(error){
+      console.log(error)
+    }
+  }
+
   render() {
+      const CityListComponent = () => (<CityList cities={this.state.cities}/>)
+
     return (
-      <div>
-        <Wrapper>
+      <Router>
+        <div>
+          <Wrapper>
             <h1>Vagabond</h1>
-        </Wrapper>
-      </div>
+          </Wrapper>
+          <Switch>
+            <Route exact path = "/" render = {CityListComponent}  />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
