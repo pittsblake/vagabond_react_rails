@@ -1,3 +1,17 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get 'vagabond/home'
+
+  root 'vagabond#home'
+
+  namespace :api do
+    resources :users do
+      resources :posts do
+      end
+    end
+    resources :cities do
+        resources :posts do
+        end
+    end
+  end
 end
