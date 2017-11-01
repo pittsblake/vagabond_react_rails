@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CityList from './components/CityList'
 import axios from 'axios'
+import City from './components/City'
 
 const Wrapper = styled.div`
   display: flex;
@@ -14,6 +15,7 @@ const Wrapper = styled.div`
     text-shadow: 5px 8px 6px #8AE5E5;
     font-size: 100px;
     margin: 50px 0px 50px 0px;
+    color: yellow;
   }
 `;
 
@@ -44,7 +46,10 @@ class App extends Component {
           </Wrapper>
           <Switch>
             <Route exact path = "/" render = {CityListComponent}  />
+            <Route exact path = "/cities/${city.id}" render = {City} />
+            <City />
           </Switch>
+     
         </div>
       </Router>
     );
