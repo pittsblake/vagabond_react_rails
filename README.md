@@ -1,24 +1,5 @@
-# README
+# Project Vagabond
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[ERD](https://creately.com/diagram/j9h67r3p1/l1CXyEMd6ZAqKw3juGrTYWYkwY%3D)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[Trello](https://trello.com/b/lmY9l02B)
