@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   root 'vagabond#home'
 
   namespace :api do
