@@ -8,4 +8,5 @@ html {
   background-image: url("../src/images/background.jpg");
   background-repeat: no-repeat;
   background-size: 100vw 100vh;
+  background-attachment: fixed;
 }
