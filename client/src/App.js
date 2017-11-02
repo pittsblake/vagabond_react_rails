@@ -44,6 +44,7 @@ class App extends Component {
           </Wrapper>
           <Switch>
             <Route exact path = "/" render = {CityListComponent}  />
+            
           </Switch>
         </div>
       </Router>

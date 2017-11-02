@@ -11,6 +11,7 @@ const CityList = (props) => {
                     {props.cities.map(city => (
                         <div key={city.id}>
                             <Link to={`/cities/${city.id}`}> {city.name} </Link>
+                            
                         </div>
 
                     ))}
