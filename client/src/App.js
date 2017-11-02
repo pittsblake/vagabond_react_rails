@@ -50,21 +50,9 @@ class App extends Component {
           </Wrapper>
           <Switch>
             <Route exact path = "/" render = {CityListComponent}  />
-
- HEAD
-            
-
-            <Route exact path = "/cities/${city.id}" render = {City} />
-=======
             <Route exact path = "/cities/:cityId" component = {City} />
-<<<<<<< HEAD
->>>>>>> 050a66155eb4bc200f7b843f34999c9380ead363
-            <City />
->>>>>>> bd1ea08001a40a257a4bb47ba4b9c30cc5ab5a12
-=======
             <Route exact path = "/cities/:cityId/posts/:id" component = {Post} />
 
->>>>>>> 11b12012050802d685015caa22539d9a44b554fb
           </Switch>
      
         </div>
