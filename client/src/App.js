@@ -6,6 +6,7 @@ import axios from 'axios'
 import City from './components/City'
 import CityList from './components/CityList'
 import NavBar from  './components/NavBar'
+import Post from './components/Post'
 
 const Wrapper = styled.div`
   display: flex;
@@ -50,7 +51,8 @@ class App extends Component {
           <Switch>
             <Route exact path = "/" render = {CityListComponent}  />
             <Route exact path = "/cities/:cityId" component = {City} />
-            <City />
+            <Route exact path = "/cities/:cityId/posts/:id" component = {Post} />
+
           </Switch>
      
         </div>

@@ -13,7 +13,7 @@ class Api::PostsController < ApplicationController
   def create
     @city = City.find(params[:city_id])
     # Hardcoded to User ID 2 as of now
-    @user = User.find(2)
+    @user = User.find(4)
 
     @post = Post.new(post_params)
 

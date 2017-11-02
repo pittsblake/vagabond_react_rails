@@ -9,7 +9,7 @@ class Api::CitiesController < ApplicationController
     # @city = City.find(params[:id])
     @city = City.joins(:posts).includes(:posts).find(params[:id])
     @posts = @city.posts
-
+    puts @city
     render json: {
       city: @city,
       posts: @city.posts

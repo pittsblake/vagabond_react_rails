@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import styled from 'styled-components'
 import PostForm from './PostForm'
+import { Link } from 'react-router-dom'
 
 const CityTitleStyle = styled.div`
   align-items: center;
@@ -30,6 +31,7 @@ class City extends Component {
   fetchCityData = async (cityId) => {
     try {
       const cityData = await axios.get(`/api/cities/${cityId}`)
+      console.log(cityData)
       await this.setState({
          city: cityData.data.city,
          posts: cityData.data.posts
@@ -51,6 +53,15 @@ class City extends Component {
     this.setState({ posts: newPosts })
   }
 
+  deletePost = async (postId) => {
+    const cityId = this.state.cityId
+    const res = await axios.delete(`/api/cities/${cityId}/posts/${postId}`)
+      const deletedPosts = [...this.state.posts]
+      console.log(deletedPosts)
+      deletedPosts.pop(res.data)
+    this.setState({posts: deletedPosts})
+  }
+
   render() {
     return (
       <div>
@@ -59,10 +70,15 @@ class City extends Component {
         <img src={this.state.city.image} alt={this.state.city.name + " Skyline"} />
         </CityTitleStyle>
         {this.state.posts.map(post => (
-              <div>
-                <h1>{post.title}</h1>
+          <div>
+            <div>
+                <Link to= {`/cities/${this.state.city.id}/posts/${post.id}`}><h1>{post.title}</h1></Link>
                 <p>{post.content}</p>
+            </div>
+              <div>
+                <button onClick={() => this.deletePost(post.id)}>Delete</button>
               </div>
+            </div>
         ))}
         <PostForm 
           createPost={this.createPost}
