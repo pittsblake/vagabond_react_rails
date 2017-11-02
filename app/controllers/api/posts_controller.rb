@@ -5,7 +5,8 @@ class Api::PostsController < ApplicationController
   end
 
   def show
-
+    @post = Post.find(params[:id])
+    render json: @post
   end
   
 # /api/cities/:city_id/posts
@@ -26,10 +27,15 @@ class Api::PostsController < ApplicationController
   end
 
   def update
-    
+    @post = Post.find(params[:id])
+    @post.update!(post_params)
+
+    render json: @post
   end
 
   def destroy
+    Post.find(params[:id]).delete
+    render status: :ok
   end
 
   private
