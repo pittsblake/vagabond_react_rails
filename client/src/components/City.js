@@ -12,7 +12,7 @@ class City extends Component {
   render() {
     return (
       <div>
-        <h1>Here is an a City</h1>
+        <h1>Here is a City</h1>
       </div>
     );
   }
