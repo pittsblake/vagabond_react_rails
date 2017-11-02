@@ -1,3 +1,4 @@
+Post.destroy_all
 City.destroy_all
 User.destroy_all
 
