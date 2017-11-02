@@ -37,7 +37,7 @@ const CityList = (props) => {
                     {props.cities.map(city => (
                         <div key={city.id}> 
                             <CityPhoto>
-                            <img src={city.image} alt={city.name + "City Photo"} />
+                            <img src={city.image} alt={city.name + "City Photo"}/>
                             <Link to={`/cities/${city.id}`}> {city.name} </Link>
                             </CityPhoto>
 

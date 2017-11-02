@@ -1,5 +1,19 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import styled from 'styled-components'
+import PostForm from './PostForm'
+
+const CityTitleStyle = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  img {
+    max-width: 600px;
+  }
+`
+
+
 
 class City extends Component {
 
@@ -26,19 +40,33 @@ class City extends Component {
     }
   }
 
+  createPost = async (newPost) => {
+    const cityId = this.state.city.id
+    console.log(cityId)
+    const res = await axios.post(`/api/cities/${cityId}/posts`, {
+      post: newPost
+    })
+    const newPosts = [...this.state.posts]
+    newPosts.push(res.data)
+    this.setState({ posts: newPosts })
+  }
+
   render() {
     return (
       <div>
-        <div>
+        <CityTitleStyle>
         <h1>{this.state.city.name}</h1>
         <img src={this.state.city.image} alt={this.state.city.name + " Skyline"} />
-        </div>
+        </CityTitleStyle>
         {this.state.posts.map(post => (
               <div>
                 <h1>{post.title}</h1>
                 <p>{post.content}</p>
               </div>
         ))}
+        <PostForm 
+          createPost={this.createPost}
+        />
       </div>
     );
   }

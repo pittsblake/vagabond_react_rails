@@ -17,6 +17,7 @@ class Api::CitiesController < ApplicationController
   end
 
   def create
+    
   end
 
   def new
