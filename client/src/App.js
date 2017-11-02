@@ -49,7 +49,7 @@ class App extends Component {
           </Wrapper>
           <Switch>
             <Route exact path = "/" render = {CityListComponent}  />
-            <Route exact path = "/cities/${city.id}" render = {City} />
+            <Route exact path = "/cities/:cityId" component = {City} />
             <City />
           </Switch>
      
