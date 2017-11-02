@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import styled from 'styled-components'
 import PostForm from './PostForm'
+
+const CityTitleStyle = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  img {
+    max-width: 600px;
+  }
+`
+
+
 
 class City extends Component {
 
@@ -42,10 +54,10 @@ class City extends Component {
   render() {
     return (
       <div>
-        <div>
+        <CityTitleStyle>
         <h1>{this.state.city.name}</h1>
         <img src={this.state.city.image} alt={this.state.city.name + " Skyline"} />
-        </div>
+        </CityTitleStyle>
         {this.state.posts.map(post => (
               <div>
                 <h1>{post.title}</h1>
