@@ -6,8 +6,14 @@ class Api::CitiesController < ApplicationController
   end
 
   def show
-    @city = City.find(params[:id])
-    render json: @city
+    # @city = City.find(params[:id])
+    @city = City.joins(:posts).includes(:posts).find(params[:id])
+    @posts = @city.posts
+
+    render json: {
+      city: @city,
+      posts: @city.posts
+    }
   end
 
   def create
