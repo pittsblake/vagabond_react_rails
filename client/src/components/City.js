@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import PostForm from './PostForm'
+
 class City extends Component {
 
   state = {
@@ -26,6 +28,17 @@ class City extends Component {
     }
   }
 
+  createPost = async (newPost) => {
+    const cityId = this.state.city.id
+    console.log(cityId)
+    const res = await axios.post(`/api/cities/${cityId}/posts`, {
+      post: newPost
+    })
+    const newPosts = [...this.state.posts]
+    newPosts.push(res.data)
+    this.setState({ posts: newPosts })
+  }
+
   render() {
     return (
       <div>
@@ -39,6 +52,9 @@ class City extends Component {
                 <p>{post.content}</p>
               </div>
         ))}
+        <PostForm 
+          createPost={this.createPost}
+        />
       </div>
     );
   }
