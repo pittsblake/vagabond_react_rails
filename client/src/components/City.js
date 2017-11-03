@@ -13,20 +13,52 @@ const CityTitleStyle = styled.div`
     max-width: 600px;
     box-shadow: 5px 5px 5px #E4BF2B;
   }
+  h1 {
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 30px;
+    margin-bottom: 5px;
+
+  }
 `
 const CityFlex = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: safe center;
+
+  img {
+    width: 50px;
+    border-radius: 50px;
+    box-shadow: -2px 2px 2px black;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    float: left;
+  }
 `
 const CityWrapper = styled.div`
   border: 1px solid red;
+  background-image: url("http://www.psdgraphics.com/file/crumpled-paper.jpg");
+  background-size: 800px 300px;
+  background-repeat: no-repeat;
+  background-color: white;
   margin-left: 30px;
   margin-bottom: 10px;
   padding-left: 5px;
   width: 600px;
+
+  .aLink {
+    text-decoration: none;
+  }
+
+  p {
+    padding: 10px;
+  }
   
 `
 const CityButton = styled.div`
+margin-left: 10px;
+margin-top: 12px;
+
 
 `
 const DeleteButton = styled.button`
@@ -55,7 +87,8 @@ const FormStyling = styled.div`
 class City extends Component {
   state = {
     city: {},
-    posts: []
+    posts: [],
+    userImage: 'http://voice4thought.org/wp-content/uploads/2016/08/default2-1.jpg'
   }
 
   componentWillMount() {
@@ -78,8 +111,6 @@ class City extends Component {
       console.log(error)
     }
   }
-
-
 
   createPost = async (newPost) => {
     const cityId = this.state.city.id
@@ -118,10 +149,11 @@ class City extends Component {
         {this.state.posts.map(post => (
           <div>
             <CityFlex>
-              <div>
-                <CityWrapper>
-                  <Link to={`/cities/${this.state.city.id}/posts/${post.id}`}><h1>{post.title}</h1></Link>
-                  <p>{post.content}</p>
+            <div>
+                <img src={this.state.userImage} alt='Profile Image' />
+              <CityWrapper>
+                <Link to= {`/cities/${this.state.city.id}/posts/${post.id}`} className="aLink"><h1>{post.title}</h1></Link>
+                <p>{post.content}</p>
                 </CityWrapper>
               </div>
               <div>
@@ -130,7 +162,7 @@ class City extends Component {
                 </CityButton>
               </div>
             </CityFlex>
-          </div>
+            </div>
         ))}
       </div>
     );
