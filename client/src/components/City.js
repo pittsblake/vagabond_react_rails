@@ -41,7 +41,7 @@ class City extends Component {
   componentWillMount() {
     const cityId = this.props.match.params.cityId
     this.fetchCityData(cityId)
-    this.sortByDate()
+
   }
 
 
