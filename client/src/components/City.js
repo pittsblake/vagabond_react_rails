@@ -11,6 +11,7 @@ const CityTitleStyle = styled.div`
   justify-content: center;
   img {
     max-width: 600px;
+    box-shadow: 5px 5px 5px #E4BF2B;
   }
 `
 const CityFlex = styled.div`
