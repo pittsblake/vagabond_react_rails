@@ -29,6 +29,24 @@ const CityWrapper = styled.div`
 const CityButton = styled.div`
 
 `
+const DeleteButton = styled.button`
+  background-color: red;
+  color: white;
+  border-radius: 10px;
+  padding: 9px 14px;
+  border: none;
+  font-size: 1em;
+  box-shadow: 2px 4px 5px grey;
+  font-family: 'Roboto', sans-serif;
+  &:hover {
+    box-shadow: none;
+    cursor: grab
+  }
+  &:active {
+    cursor: grabbing
+  }
+`
+
 const FormStyling = styled.div`
   text-align: center;
   margin: 10px;
@@ -52,9 +70,9 @@ class City extends Component {
       const cityData = await axios.get(`/api/cities/${cityId}`)
       console.log(cityData)
       await this.setState({
-         city: cityData.data.city,
-         posts: cityData.data.posts
-        })
+        city: cityData.data.city,
+        posts: cityData.data.posts
+      })
 
     } catch (error) {
       console.log(error)
@@ -78,10 +96,10 @@ class City extends Component {
   deletePost = async (postId) => {
     const cityId = this.state.cityId
     const res = await axios.delete(`/api/cities/${cityId}/posts/${postId}`)
-      const deletedPosts = [...this.state.posts]
-      console.log(deletedPosts)
-      deletedPosts.pop(res.data)
-    this.setState({posts: deletedPosts})
+    const deletedPosts = [...this.state.posts]
+    console.log(deletedPosts)
+    deletedPosts.pop(res.data)
+    this.setState({ posts: deletedPosts })
   }
 
 
@@ -89,30 +107,30 @@ class City extends Component {
     return (
       <div>
         <CityTitleStyle>
-        <h1>{this.state.city.name}</h1>
-        <img src={this.state.city.image} alt={this.state.city.name + " Skyline"} />
+          <h1>{this.state.city.name}</h1>
+          <img src={this.state.city.image} alt={this.state.city.name + " Skyline"} />
         </CityTitleStyle>
         <FormStyling>
-          <PostForm 
+          <PostForm
             createPost={this.createPost}
           />
         </FormStyling>
         {this.state.posts.map(post => (
           <div>
             <CityFlex>
-            <div>
-              <CityWrapper>
-                <Link to= {`/cities/${this.state.city.id}/posts/${post.id}`}><h1>{post.title}</h1></Link>
-                <p>{post.content}</p>
+              <div>
+                <CityWrapper>
+                  <Link to={`/cities/${this.state.city.id}/posts/${post.id}`}><h1>{post.title}</h1></Link>
+                  <p>{post.content}</p>
                 </CityWrapper>
-            </div>
+              </div>
               <div>
                 <CityButton>
-                <button onClick={() => this.deletePost(post.id)}>Delete</button>
+                  <DeleteButton onClick={() => this.deletePost(post.id)}>Delete</DeleteButton>
                 </CityButton>
               </div>
-              </CityFlex>
-            </div>
+            </CityFlex>
+          </div>
         ))}
       </div>
     );
