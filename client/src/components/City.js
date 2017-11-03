@@ -41,7 +41,7 @@ class City extends Component {
   state = {
     city: {},
     posts: [],
-    isPostForm: true
+    isPostForm: false
   }
 
   componentWillMount() {
