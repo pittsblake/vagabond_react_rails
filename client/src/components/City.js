@@ -90,7 +90,7 @@ class City extends Component {
             createPost={this.createPost}
           />
         </FormStyling>
-        {this.state.posts.map(post => (
+        {this.state.posts.reverse().map(post => (
           <div>
             <CityFlex>
             <div>
