@@ -82,6 +82,9 @@ const DeleteButton = styled.button`
 const FormStyling = styled.div`
   text-align: center;
   margin: 10px;
+  button {
+    margin: 5px;
+  }
 `;
 
 class City extends Component {
@@ -121,7 +124,8 @@ class City extends Component {
     console.log(res)
     const newPosts = [...this.state.posts]
     newPosts.unshift(res.data)
-    this.setState({ posts: newPosts })
+    this.setState({ posts: newPosts, isPostForm: !this.state.isPostForm })
+    // this.toggleIsNewPost
   }
 
   deletePost = async (postId) => {
@@ -133,6 +137,10 @@ class City extends Component {
     this.setState({ posts: deletedPosts })
   }
 
+  toggleIsNewPost = () => {
+    this.setState({isPostForm: !this.state.isPostForm})
+  }
+
 
   render() {
     return (
@@ -141,16 +149,21 @@ class City extends Component {
           <h1>{this.state.city.name}</h1>
           <img src={this.state.city.image} alt={this.state.city.name + " Skyline"} />
         </CityTitleStyle>
+
         <FormStyling>
-          <PostForm
-            createPost={this.createPost}
-          />
-        </FormStyling>
-        {this.state.posts.reverse().map(post => (
+          <button onClick={this.toggleIsNewPost}>{this.state.PostForm ? 'View all Tips' : 'Add a new Tip' }</button>
           <div>
+            {this.state.isPostForm
+              ? <PostForm 
+                cityId={this.props.match.params.cityId}
+                createPost={this.createPost}
+            /> : this.state.posts.map(post => (
+          <div>
+
             <CityFlex>
             <div>
                 <img src={this.state.userImage} alt='Profile Image' />
+
               <CityWrapper>
                 <Link to= {`/cities/${this.state.city.id}/posts/${post.id}`} className="aLink"><h1>{post.title}</h1></Link>
                 <p>{post.content}</p>
@@ -160,10 +173,16 @@ class City extends Component {
                 <CityButton>
                   <DeleteButton onClick={() => this.deletePost(post.id)}>Delete</DeleteButton>
                 </CityButton>
+
               </div>
             </CityFlex>
             </div>
-        ))}
+        ))
+      }
+            
+          </div>
+        </FormStyling>
+    
       </div>
     );
   }
