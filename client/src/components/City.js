@@ -41,7 +41,9 @@ class City extends Component {
   componentWillMount() {
     const cityId = this.props.match.params.cityId
     this.fetchCityData(cityId)
+    this.sortByDate()
   }
+
 
   fetchCityData = async (cityId) => {
     try {
@@ -57,6 +59,8 @@ class City extends Component {
     }
   }
 
+
+
   createPost = async (newPost) => {
     const cityId = this.state.city.id
     console.log(cityId)
@@ -65,7 +69,7 @@ class City extends Component {
     })
     console.log(res)
     const newPosts = [...this.state.posts]
-    newPosts.push(res.data)
+    newPosts.unshift(res.data)
     this.setState({ posts: newPosts })
   }
 
@@ -77,6 +81,7 @@ class City extends Component {
       deletedPosts.pop(res.data)
     this.setState({posts: deletedPosts})
   }
+
 
   render() {
     return (

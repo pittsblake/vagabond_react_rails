@@ -1,8 +1,9 @@
 class Api::PostsController < ApplicationController
-  def index
-    @posts = City.find(params[:city_id]).post
-    render json: @posts
-  end
+  # def index
+  #   @posts = City.find(params[:city_id]).posts.order(created_at: :desc)
+  #   puts 'hello'
+  #   render json: @posts
+  # end
 
   def show
     @post = Post.find(params[:id])
@@ -17,6 +18,10 @@ class Api::PostsController < ApplicationController
     @post = Post.new(post_params)
     @city.posts << @post
     @user.posts << @post
+
+    @city.posts.reorder(created_at: :desc)
+    @user.posts.reorder(created_at: :desc)
+
     @city.save!
     @user.save!
 
