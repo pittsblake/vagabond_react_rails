@@ -40,6 +40,7 @@ const CityList = (props) => {
                             <img src={city.image} alt={city.name + "City Photo"}/>
                             <Link to={`/cities/${city.id}`}> {city.name} </Link>
                             </CityPhoto>
+
                         </div>
 
                     ))}

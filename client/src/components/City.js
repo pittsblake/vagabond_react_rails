@@ -13,36 +13,26 @@ const CityTitleStyle = styled.div`
     max-width: 600px;
     box-shadow: 5px 5px 5px #E4BF2B;
   }
-`;
-const PostFormStyling = styled.div`
+`
+const CityFlex = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+`
+const CityWrapper = styled.div`
+  border: 1px solid red;
+  margin-left: 30px;
+  width: 600px;
+  
+`
+const CityButton = styled.div`
+  
+`
+const FormStyling = styled.div`
+  text-align: center;
   margin: 10px;
-  display: flex;
-  justify-content: center;
-`;
-
-const PostsHead = styled.div`
-  width: 100vw;
-  display: flex;
-  justify-content: space-around;
-
-  button {
-    color: red;
-    
-  }
-`;
-const LinkStyles = styled.div`
-  display: flex;
-  position: relative;
-  left: -40px;
-`;
-const PostContent = styled.div`
-  display: flex;
-  justify-content: flext-start;
-  padding-left: 21%;
 `;
 
 class City extends Component {
-
   state = {
     city: {},
     posts: []
@@ -94,23 +84,28 @@ class City extends Component {
         <h1>{this.state.city.name}</h1>
         <img src={this.state.city.image} alt={this.state.city.name + " Skyline"} />
         </CityTitleStyle>
-        <PostFormStyling>
+        <FormStyling>
           <PostForm 
             createPost={this.createPost}
           />
-        </PostFormStyling>
-        <h3>{this.state.city.name}'s Posts</h3>
-          {this.state.posts.map(post => (
+        </FormStyling>
+        {this.state.posts.map(post => (
+          <div>
+            <CityFlex>
             <div>
-        <PostsHead>
-                <Link to= {`/cities/${this.state.city.id}/posts/${post.id}`} className='aLink'><h1>{post.title}</h1></Link>
-                <button onClick={() => this.deletePost(post.id)} className='button'>Delete</button>
-        </PostsHead>
-              <PostContent>
+              <CityWrapper>
+                <Link to= {`/cities/${this.state.city.id}/posts/${post.id}`}><h1>{post.title}</h1></Link>
                 <p>{post.content}</p>
-              </PostContent>
-          </div>
-          ))}
+                </CityWrapper>
+            </div>
+              <div>
+                <CityButton>
+                <button onClick={() => this.deletePost(post.id)}>Delete</button>
+                </CityButton>
+              </div>
+              </CityFlex>
+            </div>
+        ))}
       </div>
     );
   }
