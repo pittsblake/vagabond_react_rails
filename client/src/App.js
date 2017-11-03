@@ -46,7 +46,7 @@ class App extends Component {
         <div>
           <NavBar />
           <Wrapper>
-            <h1>Vagabond</h1>
+            <h1>Travlr</h1>
           </Wrapper>
           <Switch>
             <Route exact path = "/" render = {CityListComponent}  />
