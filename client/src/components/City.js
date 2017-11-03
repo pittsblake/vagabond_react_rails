@@ -73,6 +73,7 @@ class City extends Component {
     const res = await axios.post(`/api/cities/${cityId}/posts`, {
       post: newPost
     })
+    console.log(res)
     const newPosts = [...this.state.posts]
     newPosts.push(res.data)
     this.setState({ posts: newPosts })
