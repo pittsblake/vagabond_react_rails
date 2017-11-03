@@ -21,11 +21,13 @@ const CityFlex = styled.div`
 const CityWrapper = styled.div`
   border: 1px solid red;
   margin-left: 30px;
+  margin-bottom: 10px;
+  padding-left: 5px;
   width: 600px;
   
 `
 const CityButton = styled.div`
-  
+
 `
 const FormStyling = styled.div`
   text-align: center;

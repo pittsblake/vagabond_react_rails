@@ -7,13 +7,5 @@
     "build": "cd client && npm install && npm run build && cd ..",
     "deploy": "cp -a client/build/. public/",
     "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
-<<<<<<< HEAD
-=======
-  },
-  "dependencies": {
-    "axios": "^0.17.0",
-    "react-router-dom": "^4.2.2",
-    "styled-components": "^2.2.3"
->>>>>>> bd1ea08001a40a257a4bb47ba4b9c30cc5ab5a12
   }
 }
