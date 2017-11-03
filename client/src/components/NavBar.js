@@ -69,7 +69,7 @@ class NavBar extends Component {
     return (
       <NavBarMargin>
         <NavBarStyle>
-          <VagabondStyle><Link to="/"> Vagabond </Link></VagabondStyle>
+          <VagabondStyle><Link to="/"> Travlr </Link></VagabondStyle>
           <ProfileStyle><Link to="#"> Profile </Link></ProfileStyle>
           <LogInStyle><Link to="#"> Log In </Link></LogInStyle>
         </NavBarStyle>
