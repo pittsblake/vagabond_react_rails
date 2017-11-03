@@ -8,11 +8,11 @@ class Api::CitiesController < ApplicationController
   def show
     # @city = City.find(params[:id])
     @city = City.joins(:posts).includes(:posts).find(params[:id])
-    @posts = @city.posts
+    @posts = @city.posts.order(created_at: :desc)
     puts @city
     render json: {
       city: @city,
-      posts: @city.posts
+      posts: @posts
     }
   end
 
