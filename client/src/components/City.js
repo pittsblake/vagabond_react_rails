@@ -13,11 +13,20 @@ const CityTitleStyle = styled.div`
     max-width: 600px;
   }
 `
-
-
+const CityFlex = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+`
+const CityWrapper = styled.div`
+  border: 1px solid red;
+  margin-left: 30px;
+  width: 600px; 
+`
+const CityButton = styled.div`
+  
+`
 
 class City extends Component {
-
   state = {
     city: {},
     posts: []
@@ -71,13 +80,19 @@ class City extends Component {
         </CityTitleStyle>
         {this.state.posts.map(post => (
           <div>
+            <CityFlex>
             <div>
+              <CityWrapper>
                 <Link to= {`/cities/${this.state.city.id}/posts/${post.id}`}><h1>{post.title}</h1></Link>
                 <p>{post.content}</p>
+                </CityWrapper>
             </div>
               <div>
+                <CityButton>
                 <button onClick={() => this.deletePost(post.id)}>Delete</button>
+                </CityButton>
               </div>
+              </CityFlex>
             </div>
         ))}
         <PostForm 

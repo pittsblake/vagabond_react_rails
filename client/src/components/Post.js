@@ -1,6 +1,33 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import styled from 'styled-components'
 
+const FormWrapper = styled.div`
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+    textarea {
+      background-color:#ECEDED;  
+      opacity: 0.9;
+      border: none;
+      width: 450px;
+      height: 150px;
+      font-size: 1em; 
+      color: #000;
+      padding: 10px;
+      border-radius: 5px;   
+    }
+    textarea: hover{
+      border: 1px solid #fff;
+    }
+   
+`
+const FormTitle = styled.div`
+  font-family: 'Bree Serif', serif;
+  font-size: 2em;
+  
+  
+`
 class Post extends Component {
   state = {
     cityId: {},
@@ -52,12 +79,16 @@ handleChange = (event) => {
   render() {
     return (
       <div>
+        <FormWrapper>
         <div>
-        {this.state.post.title}
+          <FormTitle>
+           {this.state.post.title}
+           </FormTitle>
         </div>
         <div>
           <textarea onBlur={this.handleUpdate} onChange={this.handleChange} name='content' value={this.state.post.content}></textarea>
         </div>
+        </FormWrapper>
       </div>
     );
   }
