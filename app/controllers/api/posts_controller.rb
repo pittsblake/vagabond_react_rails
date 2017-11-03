@@ -1,6 +1,6 @@
 class Api::PostsController < ApplicationController
   def index
-    @posts = City.find(params[:city_id]).posts
+    @posts = City.find(params[:city_id]).post
     render json: @posts
   end
 
@@ -13,10 +13,8 @@ class Api::PostsController < ApplicationController
   def create
     @city = City.find(params[:city_id])
     # Hardcoded to User ID 2 as of now
-    @user = User.find(4)
-
+    @user = User.first
     @post = Post.new(post_params)
-
     @city.posts << @post
     @user.posts << @post
     @city.save!
@@ -29,7 +27,6 @@ class Api::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @post.update!(post_params)
-
     render json: @post
   end
 

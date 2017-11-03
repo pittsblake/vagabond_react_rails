@@ -21,11 +21,16 @@ const CityFlex = styled.div`
 const CityWrapper = styled.div`
   border: 1px solid red;
   margin-left: 30px;
-  width: 600px; 
+  width: 600px;
+  
 `
 const CityButton = styled.div`
   
 `
+const FormStyling = styled.div`
+  text-align: center;
+  margin: 10px;
+`;
 
 class City extends Component {
   state = {
@@ -58,6 +63,7 @@ class City extends Component {
     const res = await axios.post(`/api/cities/${cityId}/posts`, {
       post: newPost
     })
+    console.log(res)
     const newPosts = [...this.state.posts]
     newPosts.push(res.data)
     this.setState({ posts: newPosts })
@@ -79,6 +85,11 @@ class City extends Component {
         <h1>{this.state.city.name}</h1>
         <img src={this.state.city.image} alt={this.state.city.name + " Skyline"} />
         </CityTitleStyle>
+        <FormStyling>
+          <PostForm 
+            createPost={this.createPost}
+          />
+        </FormStyling>
         {this.state.posts.map(post => (
           <div>
             <CityFlex>
@@ -96,9 +107,6 @@ class City extends Component {
               </CityFlex>
             </div>
         ))}
-        <PostForm 
-          createPost={this.createPost}
-        />
       </div>
     );
   }
