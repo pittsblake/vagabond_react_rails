@@ -28,6 +28,28 @@ const FormTitle = styled.div`
   
   
 `
+const SubmitButton = styled.button`
+a {
+  text-decoration: none;
+  color: white
+}
+background-color: green;
+color: white;
+border-radius: 10px;
+padding: 9px 14px;
+border: none;
+font-size: 1em;
+box-shadow: 2px 4px 5px grey;
+font-family: 'Roboto', sans-serif;
+&:hover {
+  box-shadow: none;
+  cursor: grab
+}
+&:active {
+  cursor: grabbing
+}
+`
+
 class Post extends Component {
   state = {
     cityId: {},
@@ -36,10 +58,10 @@ class Post extends Component {
       content: ''
     },
   }
-  
-  
+
+
   componentWillMount(props) {
-    const cityId = this.props.match.params.cityId        
+    const cityId = this.props.match.params.cityId
     const postId = this.props.match.params.id
     this.fetchPostData(postId)
     console.log(cityId)
@@ -49,15 +71,15 @@ class Post extends Component {
   fetchPostData = async (id) => {
     try {
       const postData = await axios.get(`/api/cities/${this.state.cityId}/posts/${id}`)
-      this.setState({post: postData.data})
+      this.setState({ post: postData.data })
       console.log(postData)
-    } catch(error) {
+    } catch (error) {
       console.log(error)
     }
   }
 
- handleUpdate = async () => {
-   const { id } = this.props.match.params
+  handleUpdate = async () => {
+    const { id } = this.props.match.params
     const res = await axios.patch(`/api/cities/${this.state.cityId}/posts/${id}`, {
       post: this.state.post
     })
@@ -66,28 +88,32 @@ class Post extends Component {
     this.setState({ post: res.data })
 
 
-}
+  }
 
-handleChange = (event) => {
-  const attr = event.target.name
-  const updatePost = {...this.state.post}
-  updatePost[attr] = event.target.value
-  this.setState({ post: updatePost })
-}
+  handleChange = (event) => {
+    const attr = event.target.name
+    const updatePost = { ...this.state.post }
+    updatePost[attr] = event.target.value
+    this.setState({ post: updatePost })
+  }
 
 
   render() {
     return (
       <div>
         <FormWrapper>
-        <div>
-          <FormTitle>
-           {this.state.post.title}
-           </FormTitle>
-        </div>
-        <div>
-          <textarea onBlur={this.handleUpdate} onChange={this.handleChange} name='content' value={this.state.post.content}></textarea>
-        </div>
+          <div>
+            <FormTitle>
+              {this.state.post.title}
+            </FormTitle>
+          </div>
+          <div>
+            <textarea onBlur={this.handleUpdate} onChange={this.handleChange} name='content' value={this.state.post.content}></textarea>
+            <div>
+              <SubmitButton> <a href={`/cities/${this.props.match.params.cityId}`}>Submit</a> </SubmitButton>
+            </div>
+          </div>
+
         </FormWrapper>
       </div>
     );
