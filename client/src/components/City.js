@@ -11,10 +11,35 @@ const CityTitleStyle = styled.div`
   justify-content: center;
   img {
     max-width: 600px;
+    box-shadow: 5px 5px 5px #E4BF2B;
   }
-`
+`;
+const PostFormStyling = styled.div`
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+`;
 
+const PostsHead = styled.div`
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
 
+  button {
+    color: red;
+    
+  }
+`;
+const LinkStyles = styled.div`
+  display: flex;
+  position: relative;
+  left: -40px;
+`;
+const PostContent = styled.div`
+  display: flex;
+  justify-content: flext-start;
+  padding-left: 21%;
+`;
 
 class City extends Component {
 
@@ -69,20 +94,23 @@ class City extends Component {
         <h1>{this.state.city.name}</h1>
         <img src={this.state.city.image} alt={this.state.city.name + " Skyline"} />
         </CityTitleStyle>
-        {this.state.posts.map(post => (
-          <div>
+        <PostFormStyling>
+          <PostForm 
+            createPost={this.createPost}
+          />
+        </PostFormStyling>
+        <h3>{this.state.city.name}'s Posts</h3>
+          {this.state.posts.map(post => (
             <div>
-                <Link to= {`/cities/${this.state.city.id}/posts/${post.id}`}><h1>{post.title}</h1></Link>
+        <PostsHead>
+                <Link to= {`/cities/${this.state.city.id}/posts/${post.id}`} className='aLink'><h1>{post.title}</h1></Link>
+                <button onClick={() => this.deletePost(post.id)} className='button'>Delete</button>
+        </PostsHead>
+              <PostContent>
                 <p>{post.content}</p>
-            </div>
-              <div>
-                <button onClick={() => this.deletePost(post.id)}>Delete</button>
-              </div>
-            </div>
-        ))}
-        <PostForm 
-          createPost={this.createPost}
-        />
+              </PostContent>
+          </div>
+          ))}
       </div>
     );
   }
