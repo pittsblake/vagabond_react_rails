@@ -16,14 +16,37 @@ const CityTitleStyle = styled.div`
 `
 const CityFlex = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: safe center;
+
+  img {
+    width: 50px;
+    border-radius: 50px;
+    box-shadow: -2px 2px 2px black;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    float: left;
+  }
 `
 const CityWrapper = styled.div`
   border: 1px solid red;
+  background-image: url("http://www.psdgraphics.com/file/crumpled-paper.jpg");
+  background-size: 800px 300px;
+  background-repeat: no-repeat;
+  background-color: white;
   margin-left: 30px;
   margin-bottom: 10px;
   padding-left: 5px;
   width: 600px;
+
+  .aLink {
+    text-decoration: none;
+  }
+
+  p {
+    padding: 10px;
+  }
   
 `
 const CityButton = styled.div`
@@ -37,7 +60,8 @@ const FormStyling = styled.div`
 class City extends Component {
   state = {
     city: {},
-    posts: []
+    posts: [],
+    userImage: 'http://voice4thought.org/wp-content/uploads/2016/08/default2-1.jpg'
   }
 
   componentWillMount() {
@@ -60,8 +84,6 @@ class City extends Component {
       console.log(error)
     }
   }
-
-
 
   createPost = async (newPost) => {
     const cityId = this.state.city.id
@@ -101,8 +123,9 @@ class City extends Component {
           <div>
             <CityFlex>
             <div>
+                <img src={this.state.userImage} alt='Profile Image' />
               <CityWrapper>
-                <Link to= {`/cities/${this.state.city.id}/posts/${post.id}`}><h1>{post.title}</h1></Link>
+                <Link to= {`/cities/${this.state.city.id}/posts/${post.id}`} className="aLink"><h1>{post.title}</h1></Link>
                 <p>{post.content}</p>
                 </CityWrapper>
             </div>
@@ -111,7 +134,7 @@ class City extends Component {
                 <button onClick={() => this.deletePost(post.id)}>Delete</button>
                 </CityButton>
               </div>
-              </CityFlex>
+            </CityFlex>
             </div>
         ))}
       </div>
